@@ -4,6 +4,7 @@ from utils import wit_response
 from pymessenger import Bot
 import urllib.request
 from ast import literal_eval
+import answer
 
 app = Flask(__name__)
 
@@ -40,7 +41,6 @@ def webhook():
 						messaging_text = 'no text'
 					
 					def getSenderName(id_,token_):
-						#source = 'https://graph.facebook.com/v2.6/{id}?fields=first_name,last_name&access_token={token}'.format(id=id_,token=token_)
 						source = 'https://graph.facebook.com/{id}?fields=name&access_token={token}'.format(id=id_,token=token_)
 						r = urllib.request.urlopen(source)
 						sender_n = r.read()
@@ -48,48 +48,12 @@ def webhook():
 						sender_name = str(sender_list['name'])
 						return sender_name
 					
-					#response = "test"
 					sender_name = getSenderName(sender_id,PAGE_ACCESS_TOKEN).split(" ")[0]
 					recipient_name = getSenderName(recipient_id,PAGE_ACCESS_TOKEN)
-					
 					response = None
 					entity, value = wit_response(messaging_text)
-					
-					if entity == 'greeting_keys':
-						response = "გამარჯობა {name}!".format(name=sender_name)
-						
-					if response == None:
-						response = "ბოდიში {name}, '{answer}' ჯერ არ ვიცი რას ნიშნავს :)".format(name=sender_name,answer=messaging_text)
-					
-					#response = "Hello {sname},\n{answr}".format(sname=sender_name,answr=messaging_text)
+					response = answer.generate_answer(sender_name,messaging_text,entity,value)
 					bot.send_text_message(sender_id, response)
-					
-					"""
-					response = None
-					entity, value = wit_response(messaging_text)
-					
-					sender_name = ''
-					noresponse_text = ''
-					
-					if sender_id != '1928306037421083':
-						# Names
-						source = 'https://graph.facebook.com/v2.6/' + str(sender_id) + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN
-						r = urllib.request.urlopen(source)
-						sender_n = r.read()
-						#sender_na =  sender_n[1:]
-						#sender_nam = sender_na.replace("'",'')
-						#sender_nam1 = literal_eval(sender_nam)
-						sender_nam1 = literal_eval(sender_n.decode('ascii'))
-						sender_name = str(sender_nam1['first_name'])
-						noresponse_text = messaging_event['message']['text']
-						
-					if entity == 'greeting_keys':
-						response = "გამარჯობა {}!".format(sender_name)
-						
-					if response == None:
-						response = "ბოდიში {}, '{}' ჯერ არ ვიცი რას ნიშნავს :)".format(sender_name,noresponse_text)
-					bot.send_text_message(sender_id, response)
-					"""
 	
 	return "ok", 200
 	
