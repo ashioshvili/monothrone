@@ -49,14 +49,14 @@ def webhook():
 						return sender_name
 					
 					#response = "test"
-					sender_name = getSenderName(sender_id,PAGE_ACCESS_TOKEN)
+					sender_name = getSenderName(sender_id,PAGE_ACCESS_TOKEN).split(" ")[0]
 					recipient_name = getSenderName(recipient_id,PAGE_ACCESS_TOKEN)
 					
 					response = None
 					entity, value = wit_response(messaging_text)
 					
 					if entity == 'greeting_keys':
-						response = "გამარჯობა {}!".format(sender_name)
+						response = "გამარჯობა {name}! ent: {ent}, val: {val}".format(name=sender_name,ent=entity,val=value)
 						
 					if response == None:
 						response = "ბოდიში {}, '{}' ჯერ არ ვიცი რას ნიშნავს :)".format(sender_name,noresponse_text)
