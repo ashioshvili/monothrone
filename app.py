@@ -51,7 +51,8 @@ def webhook():
 					sender_name = getSenderName(sender_id,PAGE_ACCESS_TOKEN).split(" ")[0]
 					recipient_name = getSenderName(recipient_id,PAGE_ACCESS_TOKEN)
 					entity, value = wit_response(messaging_text)
-					response = answer.generate_answer(sender_name,messaging_text,entity,value)
+					entity_name, value_name = wit_response(sender_name)
+					response = answer.generate_answer(entity_name,value_name,sender_name,messaging_text,entity,value)
 					bot.send_text_message(sender_id, response)
 	
 	return "ok", 200

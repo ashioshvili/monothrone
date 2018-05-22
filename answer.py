@@ -1,7 +1,8 @@
 import random
-def generate_answer(sender_name,messaging_text,entity,value):
+def generate_answer(entity_name,value_name,sender_name,messaging_text,entity,value):
 	response = None
 	greeting_list = ["გამარჯობა", "პრივეტ", "სალამი"]
+	"""
 	abc = {'ა':('a'),'ბ':('b'),'გ':('g'),'დ':('d'),'ე':('e'),'ვ':('v'),'ზ':('z'),'თ':('t'),'ი':('i'),'კ':('k'),'ლ':('l'),'მ':('m'),'ნ':('n'),'ო':('o'),'პ':('p')
 			,'ჟ':('j','zh'),'რ':('r'),'ს':('s'),'ტ':('t'),'უ':('u'),'ფ':('f'),'ქ':('q','k'),'ღ':('g'),'ყ':('y','k'),'შ':('sh'),'ჩ':('ch'),'ც':('c','ts'),'ძ':('z','dz'),'წ':('ts','c','w'),'ჭ':('ch')
 			,'ხ':('x','kh'),'ჯ':('j'),'ჰ':('h')}
@@ -29,9 +30,14 @@ def generate_answer(sender_name,messaging_text,entity,value):
 						for cn in range(len(val)):
 							if snm[n+1] == val[cn]:
 								name_ge += key
+	"""
+	if entity_name == 'names_geo':
+		geo_name = value_name
+	else:
+		geo_name = sender_name
 	if entity == 'greeting_keys':
 		greet_txt = random.choice(greeting_list)
-		response = "{greet} {name}!".format(greet=greet_txt,name=name_ge)
+		response = "{greet} {name}!".format(greet=greet_txt,name=geo_name)
 	if response == None:
-		response = "ბოდიში {name}, '{answer}' ჯერ არ ვიცი რას ნიშნავს :)".format(name=name_ge,answer=messaging_text)
+		response = "ბოდიში {name}, '{answer}' ჯერ არ ვიცი რას ნიშნავს :)".format(name=geo_name,answer=messaging_text)
 	return response
