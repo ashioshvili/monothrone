@@ -59,7 +59,7 @@ def webhook():
 						response = "გამარჯობა {name}! ent: {ent}, val: {val}".format(name=sender_name,ent=entity,val=value)
 						
 					if response == None:
-						response = "ბოდიში {}, '{}' ჯერ არ ვიცი რას ნიშნავს :)".format(sender_name,noresponse_text)
+						response = "ბოდიში {}, '{}' ჯერ არ ვიცი რას ნიშნავს :)".format(sender_name,messaging_text)
 					
 					#response = "Hello {sname},\n{answr}".format(sname=sender_name,answr=messaging_text)
 					bot.send_text_message(sender_id, response)
