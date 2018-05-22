@@ -42,5 +42,5 @@ def generate_answer(entity_name,value_name,sender_name,messaging_text,entity,val
 	if entity == 'names_georgian':
 		response = "Ent: {en}\nVal: {ev}".format(en=entity,ev=value)
 	if response == None:
-		response = "ბოდიში {name}, '{answer}' ჯერ არ ვიცი რას ნიშნავს :)\n\nEnt: {en}\nVal: {ev}".format(name=geo_name,answer=messaging_text,en=entity_name,ev=value_name)
+		response = "ბოდიში {name}, '{answer}' ჯერ არ ვიცი რას ნიშნავს :)".format(name=geo_name,answer=messaging_text)
 	return response
