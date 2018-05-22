@@ -51,7 +51,17 @@ def webhook():
 					#response = "test"
 					sender_name = getSenderName(sender_id,PAGE_ACCESS_TOKEN)
 					recipient_name = getSenderName(recipient_id,PAGE_ACCESS_TOKEN)
-					response = "Hello {sname},\n{answr}".format(sname=sender_name,answr=messaging_text)
+					
+					response = None
+					entity, value = wit_response(messaging_text)
+					
+					if entity == 'greeting_keys':
+						response = "გამარჯობა {}!".format(sender_name)
+						
+					if response == None:
+						response = "ბოდიში {}, '{}' ჯერ არ ვიცი რას ნიშნავს :)".format(sender_name,noresponse_text)
+					
+					#response = "Hello {sname},\n{answr}".format(sname=sender_name,answr=messaging_text)
 					bot.send_text_message(sender_id, response)
 					
 					"""
