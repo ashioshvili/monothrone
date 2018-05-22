@@ -6,3 +6,4 @@ def generate_answer(sender_name,messaging_text,entity,value):
 		response = "{greet} {name}!".format(greet=greet_txt,name=sender_name)
 	if response == None:
 		response = "ბოდიში {name}, '{answer}' ჯერ არ ვიცი რას ნიშნავს :)".format(name=sender_name,answer=messaging_text)
+	return response
