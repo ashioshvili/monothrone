@@ -37,7 +37,7 @@ def generate_answer(entity_name,value_name,sender_name,messaging_text,entity,val
 		geo_name = sender_name
 	if entity == 'greeting_keys':
 		greet_txt = random.choice(greeting_list)
-		response = "{greet} {name}!".format(greet=greet_txt,name=geo_name)
+		response = "{greet} {name}!\nEnt: {en} Val: {ev}".format(greet=greet_txt,name=geo_name,en=entity_name,ev=value_name)
 	if response == None:
 		response = "ბოდიში {name}, '{answer}' ჯერ არ ვიცი რას ნიშნავს :)\nEnt: {en} Val: {ev}".format(name=geo_name,answer=messaging_text,en=entity_name,ev=value_name)
 	return response
