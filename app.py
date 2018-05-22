@@ -56,10 +56,10 @@ def webhook():
 					entity, value = wit_response(messaging_text)
 					
 					if entity == 'greeting_keys':
-						response = "გამარჯობა {name}! ent: {ent}, val: {val}".format(name=sender_name,ent=entity,val=value)
+						response = "გამარჯობა {name}!".format(name=sender_name)
 						
 					if response == None:
-						response = "ბოდიში {}, '{}' ჯერ არ ვიცი რას ნიშნავს :)".format(sender_name,messaging_text)
+						response = "ბოდიში {name}, '{answer}' ჯერ არ ვიცი რას ნიშნავს :)".format(name=sender_name,answer=messaging_text)
 					
 					#response = "Hello {sname},\n{answr}".format(sname=sender_name,answr=messaging_text)
 					bot.send_text_message(sender_id, response)
