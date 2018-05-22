@@ -1,5 +1,6 @@
 import random
 def generate_answer(sender_name,messaging_text,entity,value):
+	response = None
 	greeting_list = ["გამარჯობა", "პრივეტ", "სალამი"]
 	if entity == 'greeting_keys':
 		greet_txt = random.choice(greeting_list)
