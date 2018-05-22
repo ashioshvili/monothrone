@@ -31,13 +31,14 @@ def generate_answer(entity_name,value_name,sender_name,messaging_text,entity,val
 							if snm[n+1] == val[cn]:
 								name_ge += key
 	"""
-	if entity_name == 'names_geo':
+	if entity_name == 'greeting_keys':
 		geo_name = value_name
 	else:
 		geo_name = sender_name
+	
 	if entity == 'greeting_keys':
 		greet_txt = random.choice(greeting_list)
-		response = "{greet} {name}!\nEnt: {en} Val: {ev}".format(greet=greet_txt,name=geo_name,en=entity_name,ev=value_name)
+		response = "{greet} {name}!\n\nEnt: {en}\nVal: {ev}".format(greet=greet_txt,name=geo_name,en=entity_name,ev=value_name)
 	if response == None:
-		response = "ბოდიში {name}, '{answer}' ჯერ არ ვიცი რას ნიშნავს :)\nEnt: {en} Val: {ev}".format(name=geo_name,answer=messaging_text,en=entity_name,ev=value_name)
+		response = "ბოდიში {name}, '{answer}' ჯერ არ ვიცი რას ნიშნავს :)\n\nEnt: {en}\nVal: {ev}".format(name=geo_name,answer=messaging_text,en=entity_name,ev=value_name)
 	return response
