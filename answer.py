@@ -23,8 +23,9 @@ def generate_answer(sender_name,messaging_text,entity,value):
 						name_ge += key
 				if n+1 == len(snm):
 					for key, val in abc.items():
-						if snm[n+1] == val[nn]:
-							name_ge += key
+						for cn in range(len(val)):
+							if snm[n+1] == val[cn]:
+								name_ge += key
 		"""
 		if (sender_name[n] + sender_name[n+1]) == 'sh':
 			name_ge += 'შ'
