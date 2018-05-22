@@ -8,40 +8,27 @@ def generate_answer(sender_name,messaging_text,entity,value):
 	snm = sender_name.lower()
 	name_ge = ''
 	name_spell = ''
+	skip = 1000
 	for n in range(len(snm)):
 		got_two_ch = 0
-		if n+1 <= len(snm):
+		if n < (len(snm)-1) and n != skip:
 			two_ch = snm[n] + snm[n+1]
 			for key, val in abc.items():
 				for nn in range(len(val)):
 					if two_ch == val[nn]:
 						got_two_ch = 1
 						name_ge += key
+						skip = n+1
 			if got_two_ch == 0:
 				for key, val in abc.items():
-					if snm[n] == val[nn]:
-						name_ge += key
-				if n+1 == len(snm):
+					for bn in range(len(val)):
+						if snm[n] == val[bn]:
+							name_ge += key
+				if n+1 == (len(snm)-1):
 					for key, val in abc.items():
 						for cn in range(len(val)):
 							if snm[n+1] == val[cn]:
 								name_ge += key
-		"""
-		if (sender_name[n] + sender_name[n+1]) == 'sh':
-			name_ge += 'შ'
-			
-		else:
-			if sender_name[0] == 'x':
-				name_ge += 'ხ'
-			if sender_name[0] == 'x':
-				name_ge += 'ხ'
-			if len(sender_name)-(n+1) != 0:
-				char = sender_name[n]
-				for key, val in abc.items():
-					for n in range(len(val)):
-						if char == val[0]:
-							name_ge += key
-		"""	
 	if entity == 'greeting_keys':
 		greet_txt = random.choice(greeting_list)
 		response = "{greet} {name}!".format(greet=greet_txt,name=name_ge)
