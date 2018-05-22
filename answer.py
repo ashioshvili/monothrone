@@ -39,5 +39,5 @@ def generate_answer(entity_name,value_name,sender_name,messaging_text,entity,val
 		greet_txt = random.choice(greeting_list)
 		response = "{greet} {name}!".format(greet=greet_txt,name=geo_name)
 	if response == None:
-		response = "ბოდიში {name}, '{answer}' ჯერ არ ვიცი რას ნიშნავს :)".format(name=geo_name,answer=messaging_text)
+		response = "ბოდიში {name}, '{answer}' ჯერ არ ვიცი რას ნიშნავს :)\nEnt: {en} Val: {ev}".format(name=geo_name,answer=messaging_text,en=entity_name,ev=value_name)
 	return response
