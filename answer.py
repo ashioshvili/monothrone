@@ -1,7 +1,7 @@
 import random
 import time
 from datetime import datetime
-
+#
 def generate_answer(entity_name,value_name,sender_name,messaging_text,got_entities):
 	response = None
 	geo_name = ''
