@@ -39,7 +39,7 @@ def generate_answer(entity_name,value_name,sender_name,messaging_text,entity,val
 	if entity == 'greeting_keys':
 		greet_txt = random.choice(greeting_list)
 		response = "{greet} {name}!".format(greet=greet_txt,name=geo_name)
-	if entity == 'names_georgian':
+	if entity != None:
 		response = "Ent: {en}\nVal: {ev}".format(en=entity,ev=value)
 	if response == None:
 		response = "ბოდიში {name}, '{answer}' ჯერ არ ვიცი რას ნიშნავს :)".format(name=geo_name,answer=messaging_text)
