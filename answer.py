@@ -3,16 +3,16 @@ import time
 from datetime import datetime
 #
 def generate_answer(entity_name,value_name,sender_name,messaging_text,got_entities):
+	greeting_list = ["გამარჯობა", "გაგიმარჯოს", "მოგესალმებით"]
 	response = None
 	geo_name = ''
 	hour = ''
 	greet_txt = ''
-	greeting_list = ["გამარჯობა", "გაგიმარჯოს", "მოგესალმებით"]
+	greet_msg = 0
 	if entity_name == 'names_georgian':
 		geo_name = value_name
 	else:
 		geo_name = sender_name
-	greet_msg = 0
 	for key,val in got_entities.items():
 		if key == 'greeting_keys':
 			day_time = '{0:%Y-%m-%d %H:%M:%S}'.format(datetime.now())
@@ -42,7 +42,6 @@ def generate_answer(entity_name,value_name,sender_name,messaging_text,got_entiti
 				response += "\nEnt: {en}\nVal: {ev}".format(en=key,ev=val)
 			else:
 				response += "Ent: {en}\nVal: {ev}\n".format(en=key,ev=val)
-	
 	if response == None:
 		response = "ბოდიში {name}, '{answer}' ჯერ არ ვიცი რას ნიშნავს :)".format(name=geo_name,answer=messaging_text)
 	return response
