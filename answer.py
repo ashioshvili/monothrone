@@ -15,7 +15,7 @@ def generate_answer(entity_name,value_name,sender_name,messaging_text,got_entiti
 	greet_msg = 0
 	for key,val in got_entities.items():
 		if key == 'greeting_keys':
-			day_time = '{0:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
+			day_time = '{0:%Y-%m-%d %H:%M:%S}'.format(datetime.now())
 			if day_time[-8] != '0' and day_time[-7] != '0':
 				hour = day_time[-8] + day_time[-7]
 			if day_time[-8] == '0' and day_time[-7] != '0':
