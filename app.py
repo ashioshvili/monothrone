@@ -1,6 +1,6 @@
 import os, sys
 from flask import Flask, request
-from utils import wit_response
+from utils import wit_response, wit_sname
 from pymessenger import Bot
 import urllib.request
 from ast import literal_eval
@@ -50,9 +50,9 @@ def webhook():
 					
 					sender_name = getSenderName(sender_id,PAGE_ACCESS_TOKEN).split(" ")[0]
 					recipient_name = getSenderName(recipient_id,PAGE_ACCESS_TOKEN)
-					entity, value = wit_response(messaging_text)
-					entity_name, value_name = wit_response(sender_name)
-					response = answer.generate_answer(entity_name,value_name,sender_name,messaging_text,entity,value)
+					entity_name, value_name = wit_sname(sender_name)
+					got_entities = wit_response(messaging_text)
+					response = answer.generate_answer(entity_name,value_name,sender_name,messaging_text,got_entities)
 					bot.send_text_message(sender_id, response)
 	
 	return "ok", 200
