@@ -4,16 +4,18 @@ from datetime import datetime
 
 def generate_answer(entity_name,value_name,sender_name,messaging_text,got_entities):
 	response = None
+	geo_name = ''
+	hour = ''
+	greet_txt = ''
 	greeting_list = ["გამარჯობა", "გაგიმარჯოს", "მოგესალმებით"]
 	if entity_name == 'names_georgian':
 		geo_name = value_name
 	else:
 		geo_name = sender_name
 	greet_msg = 0
-	greet_txt = ''
 	for key,val in got_entities.items():
 		if key == 'greeting_keys':
-			day_time = '{0:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())#
+			day_time = '{0:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
 			if day_time[-8] != '0' and day_time[-7] != '0':
 				hour = day_time[-8] + day_time[-7]
 			if day_time[-8] == '0' and day_time[-7] != '0':
