@@ -1,6 +1,6 @@
 import random
-import time
-from datetime import datetime
+#import time
+#from datetime import datetime
 
 def generate_answer(entity_name,value_name,sender_name,messaging_text,got_entities):
 
@@ -16,6 +16,7 @@ def generate_answer(entity_name,value_name,sender_name,messaging_text,got_entiti
 	greet_msg = 0
 	for key,val in got_entities.items():
 		if key == 'greeting_keys':
+			"""
 			day_time = '{0:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
 			if day_time[-8] != '0' and day_time[-7] != '0':
 				hour = day_time[-8] + day_time[-7]
@@ -34,7 +35,8 @@ def generate_answer(entity_name,value_name,sender_name,messaging_text,got_entiti
 					greet_txt = "ღამემშვიდობის"
 			if hour == '00':
 				greet_txt = "ღამემშვიდობის"
-			#greet_txt = random.choice(greeting_list)
+			"""
+			greet_txt = random.choice(greeting_list)
 			response = "{greet} {name}!".format(greet=greet_txt,name=geo_name)
 			greet_msg = 1
 	for key,val in got_entities.items():		
