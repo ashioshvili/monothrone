@@ -1,5 +1,5 @@
 from wit import Wit
-#
+
 access_token = "NKQBRYAM5AXIJ4AKMEJIOMA6RXSXTYVZ"
 
 client = Wit(access_token = access_token)
