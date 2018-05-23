@@ -1,10 +1,12 @@
 import random
+import time
+from datetime import datetime
 
 def generate_answer(entity_name,value_name,sender_name,messaging_text,got_entities):
 
 	response = None
 	
-	greeting_list = ["გამარჯობა", "პრივეტ", "სალამი"]
+	greeting_list = ["გამარჯობა", "გაგიმარჯოს", "მოგესალმებით"]
 	
 	if entity_name == 'names_georgian':
 		geo_name = value_name
@@ -14,7 +16,25 @@ def generate_answer(entity_name,value_name,sender_name,messaging_text,got_entiti
 	greet_msg = 0
 	for key,val in got_entities.items():
 		if key == 'greeting_keys':
-			greet_txt = random.choice(greeting_list)
+			day_time = '{0:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
+			if day_time[-8] != '0' and day_time[-7] != '0':
+				hour = day_time[-8] + day_time[-7]
+			if day_time[-8] == '0' and day_time[-7] != '0':
+				hour = day_time[-7]
+			if day_time[-8] == '0' and day_time[-7] == '0':
+				hour = '00'
+			if hour != '00':
+				if int(hour) >= 6 and int(hour) <= 11:
+					greet_txt = "დილამშვიდობის"
+				if int(hour) >= 12 and int(hour) <= 4:
+					greet_txt = "შუადღემშვიდობის"
+				if int(hour) >= 5 and int(hour) <= 7:
+					greet_txt = "საღამომშვიდობის"
+				if int(hour) >= 8 and int(hour) <= 5:
+					greet_txt = "ღამემშვიდობის"
+			if hour == '00':
+				greet_txt = "ღამემშვიდობის"
+			#greet_txt = random.choice(greeting_list)
 			response = "{greet} {name}!".format(greet=greet_txt,name=geo_name)
 			greet_msg = 1
 	for key,val in got_entities.items():		
